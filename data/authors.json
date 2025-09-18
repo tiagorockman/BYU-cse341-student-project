@@ -1,0 +1,74 @@
+[
+  {
+    "firstName": "Prophets",
+    "lastName": "",
+    "email": "prophets@lds.org",
+    "birthDate": "600-01-01",
+    "nationality": "Ancient American",
+    "biography": "Multiple prophets and inspired writers who contributed to the compilation of The Book of Mormon, including Nephi, Mormon, Moroni, and others. These ancient American prophets recorded their testimonies and teachings between approximately 600 BC and 400 AD.",
+    "website": "https://www.churchofjesuschrist.org"
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Austen",
+    "email": "jane.austen@classic.com",
+    "birthDate": "1775-12-16",
+    "nationality": "British",
+    "biography": "Jane Austen was an English novelist known primarily for her six major novels, which interpret, critique and comment upon the British landed gentry at the end of the 18th century.",
+    "website": "https://www.janeausten.org"
+  },
+  {
+    "firstName": "George",
+    "lastName": "Orwell",
+    "email": "george.orwell@dystopian.com",
+    "birthDate": "1903-06-25",
+    "nationality": "British",
+    "biography": "Eric Arthur Blair, known by his pen name George Orwell, was an English novelist, essayist, journalist and critic. His work is characterised by lucid prose, biting social criticism, opposition to totalitarianism, and outspoken support of democratic socialism.",
+    "website": "https://www.orwellfoundation.com"
+  },
+  {
+    "firstName": "Harper",
+    "lastName": "Lee",
+    "email": "harper.lee@mockingbird.com",
+    "birthDate": "1926-04-28",
+    "nationality": "American",
+    "biography": "Nelle Harper Lee was an American novelist best known for her 1960 novel To Kill a Mockingbird. It won the 1961 Pulitzer Prize and has become a classic of modern American literature.",
+    "website": "https://www.harperlee.com"
+  },
+  {
+    "firstName": "J.K.",
+    "lastName": "Rowling",
+    "email": "jk.rowling@hogwarts.com",
+    "birthDate": "1965-07-31",
+    "nationality": "British",
+    "biography": "Joanne Rowling, better known by her pen name J.K. Rowling, is a British author, philanthropist, film producer, television producer, and screenwriter. She is best known for writing the Harry Potter fantasy series.",
+    "website": "https://www.jkrowling.com"
+  },
+  {
+    "firstName": "Agatha",
+    "lastName": "Christie",
+    "email": "agatha.christie@mystery.com",
+    "birthDate": "1890-09-15",
+    "nationality": "British",
+    "biography": "Dame Agatha Mary Clarissa Christie was an English writer known for her sixty-six detective novels and fourteen short story collections, particularly those revolving around fictional detectives Hercule Poirot and Miss Marple.",
+    "website": "https://www.agathachristie.com"
+  },
+  {
+    "firstName": "Mark",
+    "lastName": "Twain",
+    "email": "mark.twain@mississippi.com",
+    "birthDate": "1835-11-30",
+    "nationality": "American",
+    "biography": "Samuel Langhorne Clemens, known by his pen name Mark Twain, was an American writer, humorist, entrepreneur, publisher, and lecturer. He was lauded as the 'greatest humorist the United States has produced.'",
+    "website": "https://www.marktwainhouse.org"
+  },
+  {
+    "firstName": "Maya",
+    "lastName": "Angelou",
+    "email": "maya.angelou@poetry.com",
+    "birthDate": "1928-04-04",
+    "nationality": "American",
+    "biography": "Maya Angelou was an American poet, memoirist, and civil rights activist. She published seven autobiographies, three books of essays, several books of poetry, and is credited with a list of plays, movies, and television shows spanning over 50 years.",
+    "website": "https://www.mayaangelou.com"
+  }
+]
