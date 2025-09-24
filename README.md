@@ -288,4 +288,44 @@ If you have any questions or issues, please:
 
 ---
 
-**Happy Coding! 🚀**
+**Authentication Tips! 🚀**
+
+Authentication Overview
+[Website Authentication: The Complete Guide with FAQs](https://swoopnow.com/website-authentication/)
+[RESTful API Authentication Basics](https://blog.restcase.com/restful-api-authentication-basics/)
+
+OAuth Introduction
+[What is OAuth? Definition and How it Works](https://www.varonis.com/blog/what-is-oauth)
+[What the Heck is OAuth?](https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth)
+
+OAuth2 vs OAuth1
+[What’s the difference? OAuth 1.0 vs OAuth 2.0](https://www.synopsys.com/blogs/software-security/oauth-2-0-vs-oauth-1-0/)
+[Differences Between OAuth 1 and 2](https://www.oauth.com/oauth2-servers/differences-between-oauth-1-2/)
+[StackOverflow: OAuth 2.0: Benefits and use cases — why?](https://stackoverflow.com/questions/7561631/oauth-2-0-benefits-and-use-cases-why)
+
+Getting started with OAuth
+Google OAuth Docs - Node.js quickstart https://developers.google.com/people/quickstart/nodejs
+(OPTIONAL) Youtube: Simplified OAuth 2.0 Tutorial - Example with Node.js https://www.youtube.com/watch?v=PdFdd4N6LtI
+
+Getting started with OAuth
+Google OAuth Docs - Node.js quickstart https://www.youtube.com/watch?v=SBvmnHTQIPY
+(OPTIONAL) Youtube: Simplified OAuth 2.0 Tutorial - Example with Node.js https://www.youtube.com/watch?v=PdFdd4N6LtI
+
+Node.js API + OAuth + MongoDB
+(OPTIONAL) Youtube: Node.js App From Scratch | Express, MongoDB & Google https://www.youtube.com/watch?v=SBvmnHTQIPY
+(OPTIONAL) Youtube: OAuth (Passport.js) Tutorial #12 - Saving User to https://www.youtube.com/watch?v=KRCh6mSSsb8
+
+OAuth and Swagger
+Swagger docs: OAuth 2.0 https://swagger.io/docs/specification/authentication/oauth2/
+Swagger OAuth 2.0 configuration https://swagger.io/docs/open-source-tools/swagger-ui/usage/oauth2/
+
+
+JSON Web Tokens (JWT)
+Introduction to JSON Web Tokens https://jwt.io/introduction
+What is JWT and how does it work? https://www.akana.com/blog/what-is-jwt
+(OPTIONAL) YouTube: What Is JWT and Why Should You Use JWT https://www.youtube.com/watch?v=7Q17ubqLfaM
+JWT meets OAuth
+For the sake of authentication purposes, your API does not need to use both OAuth and JWTs. For your project, you will include both just to understand how both work. With that said, there are some use cases for using both in the real world.
+
+OAuth vs JWT (JSON Web Tokens): An In-Depth Comparison https://supertokens.com/blog/oauth-vs-jwt
+API Keys vs OAuth Tokens vs JSON Web Tokens https://zapier.com/engineering/apikey-oauth-jwt/
