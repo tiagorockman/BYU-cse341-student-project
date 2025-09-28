@@ -14,6 +14,11 @@ const { authErrorHandler } = require('./middleware/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Trust proxy for Render hosting
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
 const host = process.env.SERVER || ''
 
 // CORS configuration for authentication
@@ -61,8 +66,8 @@ app.use(session({
   saveUninitialized: false,
   store: sessionStore,
   cookie: {
-    secure: process.env.NODE_ENV === 'production',
-    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    httpOnly: true, // Prevent XSS attacks
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
     sameSite: 'lax' // Use 'lax' for better compatibility
   }
