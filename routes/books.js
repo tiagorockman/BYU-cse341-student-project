@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const booksController = require('../controllers/booksController');
+const { requireAuth } = require('../middleware/auth');
 
 /**
  * @swagger
@@ -195,7 +196,7 @@ const booksController = require('../controllers/booksController');
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get('/', booksController.getAllBooks);
+router.get('/', requireAuth, booksController.getAllBooks);
 
 /**
  * @swagger
@@ -242,7 +243,7 @@ router.get('/', booksController.getAllBooks);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.get('/:id', booksController.getBookById);
+router.get('/:id', requireAuth, booksController.getBookById);
 
 /**
  * @swagger
@@ -250,6 +251,8 @@ router.get('/:id', booksController.getBookById);
  *   post:
  *     summary: Create a new book
  *     tags: [Books]
+ *     security:
+ *       - sessionAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -273,24 +276,30 @@ router.get('/:id', booksController.getBookById);
  *                 data:
  *                   $ref: '#/components/schemas/Book'
  *       400:
- *         description: Validation error
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 success:
- *                   type: boolean
- *                   example: false
- *                 error:
- *                   type: string
- *                   example: "Validation failed"
- *                 details:
- *                   type: array
- *                   items:
- *                     type: string
- *                   example: ["Title is required", "ISBN must be valid", "Author ID is required"]
- *       404:
+         description: Validation error
+         content:
+           application/json:
+             schema:
+               type: object
+               properties:
+                 success:
+                   type: boolean
+                   example: false
+                 error:
+                   type: string
+                   example: "Validation failed"
+                 details:
+                   type: array
+                   items:
+                     type: string
+                   example: ["Title is required", "ISBN must be valid", "Author ID is required"]
+       401:
+         description: Authentication required
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/Error'
+       404:
  *         description: Author not found
  *         content:
  *           application/json:
@@ -309,7 +318,7 @@ router.get('/:id', booksController.getBookById);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.post('/', booksController.createBook);
+router.post('/', requireAuth, booksController.createBook);
 
 /**
  * @swagger
@@ -317,6 +326,8 @@ router.post('/', booksController.createBook);
  *   put:
  *     summary: Update a book by id
  *     tags: [Books]
+ *     security:
+ *       - sessionAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -352,6 +363,12 @@ router.post('/', booksController.createBook);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  *       404:
  *         description: The book or author was not found
  *         content:
@@ -371,7 +388,7 @@ router.post('/', booksController.createBook);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.put('/:id', booksController.updateBook);
+router.put('/:id', requireAuth, booksController.updateBook);
 
 /**
  * @swagger
@@ -379,6 +396,8 @@ router.put('/:id', booksController.updateBook);
  *   delete:
  *     summary: Delete a book by id
  *     tags: [Books]
+ *     security:
+ *       - sessionAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -408,6 +427,12 @@ router.put('/:id', booksController.updateBook);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  *       404:
  *         description: The book was not found
  *         content:
@@ -421,6 +446,6 @@ router.put('/:id', booksController.updateBook);
  *             schema:
  *               $ref: '#/components/schemas/Error'
  */
-router.delete('/:id', booksController.deleteBook);
+router.delete('/:id', requireAuth, booksController.deleteBook);
 
 module.exports = router;

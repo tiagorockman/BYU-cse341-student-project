@@ -1,6 +1,6 @@
-# Library Management API
+# Library Management API with OAuth Authentication
 
-A comprehensive RESTful API for managing a library system with full CRUD operations for books and authors. Built with Node.js, Express.js, and MongoDB.
+A comprehensive RESTful API for managing a library system with full CRUD operations for books and authors. Features Google OAuth authentication for secure access to protected endpoints. Built with Node.js, Express.js, MongoDB, and Passport.js.
 
 ## 📋 Table of Contents
 
@@ -21,11 +21,14 @@ A comprehensive RESTful API for managing a library system with full CRUD operati
 ## ✨ Features
 
 - **Complete CRUD Operations** for Books and Authors
+- **Google OAuth Authentication** with session management
+- **Protected Routes** - POST, PUT, and DELETE operations require authentication
+- **User Account Management** with secure password hashing (bcrypt)
 - **RESTful API Design** following best practices
 - **MongoDB Integration** with proper error handling
-- **Swagger Documentation** for interactive API testing
+- **Swagger Documentation** for interactive API testing with authentication support
 - **Input Validation** and error handling
-- **CORS Support** for cross-origin requests
+- **CORS Support** for cross-origin requests with authentication
 - **Environment-based Configuration** for development and production
 - **Modular Architecture** with separate controllers, models, and routes
 
@@ -34,6 +37,10 @@ A comprehensive RESTful API for managing a library system with full CRUD operati
 - **Node.js** - JavaScript runtime environment
 - **Express.js** - Web application framework
 - **MongoDB** - NoSQL database
+- **Passport.js** - Authentication middleware
+- **Google OAuth 2.0** - Authentication provider
+- **Express Session** - Session management
+- **bcrypt** - Password hashing
 - **Swagger** - API documentation and testing
 - **CORS** - Cross-Origin Resource Sharing
 - **dotenv** - Environment variable management
@@ -87,16 +94,26 @@ MONGO_DB=library_management
 PORT=3000
 NODE_ENV=development
 
+# OAuth Configuration
+GOOGLE_CLIENT_ID=your-google-client-id
+GOOGLE_CLIENT_SECRET=your-google-client-secret
+SESSION_SECRET=your-session-secret-key
+CLIENT_URL=http://localhost:3000
+
 # For production deployment (optional)
 # NODE_ENV=production
 ```
 
 ### Required Environment Variables:
 
-- `MONGODB_URI` - My MongoDB connection string
+- `MONGODB_URI` - MongoDB connection string
 - `MONGO_DB` - Database name to use
 - `PORT` - Port number for the server (default: 3000)
 - `NODE_ENV` - Environment mode (development/production)
+- `GOOGLE_CLIENT_ID` - Google OAuth 2.0 Client ID
+- `GOOGLE_CLIENT_SECRET` - Google OAuth 2.0 Client Secret
+- `SESSION_SECRET` - Secret key for session encryption
+- `CLIENT_URL` - Frontend application URL for OAuth redirects
 
 ## 🏃‍♂️ Running the Application
 
@@ -124,25 +141,37 @@ The API includes interactive Swagger documentation available at `/api-docs` when
 
 ## 🔗 API Endpoints
 
-### Books Endpoints
+### Authentication Endpoints
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/api/books` | Get all books |
-| GET | `/api/books/:id` | Get a specific book by ID |
-| POST | `/api/books` | Create a new book |
-| PUT | `/api/books/:id` | Update a book by ID |
-| DELETE | `/api/books/:id` | Delete a book by ID |
+| GET | `/auth/google` | Initiate Google OAuth login |
+| GET | `/auth/google/callback` | Google OAuth callback |
+| GET | `/auth/login/success` | Check successful login status |
+| GET | `/auth/login/failed` | Check failed login status |
+| GET | `/auth/status` | Get current authentication status |
+| POST | `/auth/logout` | Logout current user |
+| GET | `/auth/dashboard` | Protected dashboard example |
+
+### Books Endpoints
+
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/books` | Get all books | No |
+| GET | `/api/books/:id` | Get a specific book by ID | No |
+| POST | `/api/books` | Create a new book | **Yes** |
+| PUT | `/api/books/:id` | Update a book by ID | **Yes** |
+| DELETE | `/api/books/:id` | Delete a book by ID | **Yes** |
 
 ### Authors Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/api/authors` | Get all authors |
-| GET | `/api/authors/:id` | Get a specific author by ID |
-| POST | `/api/authors` | Create a new author |
-| PUT | `/api/authors/:id` | Update an author by ID |
-| DELETE | `/api/authors/:id` | Delete an author by ID |
+| Method | Endpoint | Description | Auth Required |
+|--------|----------|-------------|---------------|
+| GET | `/api/authors` | Get all authors | No |
+| GET | `/api/authors/:id` | Get a specific author by ID | No |
+| POST | `/api/authors` | Create a new author | **Yes** |
+| PUT | `/api/authors/:id` | Update an author by ID | **Yes** |
+| DELETE | `/api/authors/:id` | Delete an author by ID | **Yes** |
 
 ### Example API Calls
 
@@ -244,11 +273,47 @@ BYU-cse341-student-project/
 └── README.md              # Project documentation
 ```
 
+## 🔐 Google OAuth Setup
+
+To enable Google OAuth authentication, you need to set up a Google Cloud Project and obtain OAuth credentials:
+
+### 1. Create a Google Cloud Project
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project or select an existing one
+3. Enable the Google+ API for your project
+
+### 2. Configure OAuth Consent Screen
+1. Navigate to **APIs & Services** > **OAuth consent screen**
+2. Choose **External** user type
+3. Fill in the required information:
+   - App name: `Library Management API`
+   - User support email: Your email
+   - Developer contact information: Your email
+4. Add scopes: `email`, `profile`, `openid`
+5. Add test users (for development)
+
+### 3. Create OAuth Credentials
+1. Go to **APIs & Services** > **Credentials**
+2. Click **Create Credentials** > **OAuth 2.0 Client IDs**
+3. Choose **Web application**
+4. Add authorized redirect URIs:
+   - `http://localhost:3000/auth/google/callback` (for development)
+   - `https://yourdomain.com/auth/google/callback` (for production)
+5. Copy the **Client ID** and **Client Secret**
+
+### 4. Update Environment Variables
+Add the credentials to your `.env` file:
+```env
+GOOGLE_CLIENT_ID=your-actual-google-client-id
+GOOGLE_CLIENT_SECRET=your-actual-google-client-secret
+SESSION_SECRET=a-random-secret-key-for-sessions
+```
+
 ## 🚀 Deployment
 
 ### Local Development
 1. Ensure MongoDB is running locally
-2. Set up my `.env` file with local MongoDB URI
+2. Set up your `.env` file with local MongoDB URI and OAuth credentials
 3. Run `npm run dev`
 
 ### Production Deployment (Render/Heroku)
