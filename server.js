@@ -48,8 +48,15 @@ sessionStore.on('error', (error) => {
   console.error('❌ Session store error:', error);
 });
 
+if(process.env.SESSION_SECRET === '')
+  console.log('❌ ❌ ❌ SESSION_SECRET empty')
+
+if(process.env.NODE_ENV === '')
+  console.log('❌ ❌ ❌ NODE_ENV empty')
+
 app.use(session({
-  secret: process.env.SESSION_SECRET || 'your-secret-key-change-in-production',
+  name: 'library.sid', // Custom session name
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
   store: sessionStore,
@@ -57,8 +64,10 @@ app.use(session({
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+    sameSite: 'lax' // Use 'lax' for better compatibility
   }
+
+
 }));
 
 // Passport middleware

@@ -116,6 +116,7 @@ router.get('/google/callback',
     // Successful authentication
     console.log('🎯 OAuth callback - User authenticated:', req.user ? 'Yes' : 'No');
     console.log('🎯 OAuth callback - Session ID:', req.sessionID);
+    console.log('🎯 OAuth callback - Cookies received:', req.headers.cookie);
     
     // Explicitly save the session before redirect
     req.session.save((err) => {
@@ -124,6 +125,7 @@ router.get('/google/callback',
         return res.redirect('/auth/login/failed');
       }
       console.log('✅ Session saved successfully');
+      console.log('🍪 Setting cookie for session:', req.sessionID);
       res.redirect('/auth/dashboard');
     });
   }
@@ -328,6 +330,7 @@ router.get('/dashboard', (req, res) => {
   console.log('🔐 Is authenticated:', req.isAuthenticated());
   console.log('👤 Session user:', req.user ? 'Present' : 'Not present');
   console.log('📋 Session ID:', req.sessionID);
+  console.log('🍪 Cookies received:', req.headers.cookie);
   console.log('🗂️ Session data:', req.session);
   
   if (req.isAuthenticated()) {
