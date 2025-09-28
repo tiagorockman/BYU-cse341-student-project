@@ -232,30 +232,30 @@ router.get('/:id', authorsController.getAuthorById);
  *                 data:
  *                   $ref: '#/components/schemas/Author'
  *       400:
-         description: Validation error
-         content:
-           application/json:
-             schema:
-               type: object
-               properties:
-                 success:
-                   type: boolean
-                   example: false
-                 error:
-                   type: string
-                   example: "Validation failed"
-                 details:
-                   type: array
-                   items:
-                     type: string
-                   example: ["First name is required", "Email must be valid"]
-       401:
-         description: Authentication required
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       409:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *                   example: "Validation failed"
+ *                 details:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["First name is required", "Email must be valid"]
+ *       401:
+ *         description: Authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       409:
  *         description: Author with this email already exists
  *         content:
  *           application/json:
@@ -316,35 +316,35 @@ router.post('/', requireAuth, authorsController.createAuthor);
  *                 data:
  *                   $ref: '#/components/schemas/Author'
  *       400:
-         description: Invalid author ID format or validation error or no changes made
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       401:
-         description: Authentication required
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       404:
-         description: The author was not found
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       409:
-         description: Email conflict with another author
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       500:
-         description: Server error
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
+ *         description: Invalid author ID format or validation error or no changes made
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       404:
+ *         description: The author was not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       409:
+ *         description: Email conflict with another author
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  */
 router.put('/:id', requireAuth, authorsController.updateAuthor);
 
@@ -380,35 +380,35 @@ router.put('/:id', requireAuth, authorsController.updateAuthor);
  *                 data:
  *                   $ref: '#/components/schemas/Author'
  *       400:
-         description: Invalid author ID format
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       401:
-         description: Authentication required
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       404:
-         description: The author was not found
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       409:
-         description: Cannot delete author. Author has associated books.
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       500:
-         description: Server error
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
+ *         description: Invalid author ID format
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       401:
+ *         description: Authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       404:
+ *         description: The author was not found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       409:
+ *         description: Cannot delete author. Author has associated books.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       500:
+ *         description: Server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
  */
 router.delete('/:id', requireAuth, authorsController.deleteAuthor);
 

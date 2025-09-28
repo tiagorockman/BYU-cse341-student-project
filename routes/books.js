@@ -276,30 +276,30 @@ router.get('/:id', requireAuth, booksController.getBookById);
  *                 data:
  *                   $ref: '#/components/schemas/Book'
  *       400:
-         description: Validation error
-         content:
-           application/json:
-             schema:
-               type: object
-               properties:
-                 success:
-                   type: boolean
-                   example: false
-                 error:
-                   type: string
-                   example: "Validation failed"
-                 details:
-                   type: array
-                   items:
-                     type: string
-                   example: ["Title is required", "ISBN must be valid", "Author ID is required"]
-       401:
-         description: Authentication required
-         content:
-           application/json:
-             schema:
-               $ref: '#/components/schemas/Error'
-       404:
+ *         description: Validation error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: false
+ *                 error:
+ *                   type: string
+ *                   example: "Validation failed"
+ *                 details:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["Title is required", "ISBN must be valid", "Author ID is required"]
+ *       401:
+ *         description: Authentication required
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Error'
+ *       404:
  *         description: Author not found
  *         content:
  *           application/json:
