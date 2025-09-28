@@ -10,7 +10,10 @@ passport.serializeUser((user, done) => {
   if (!user || !user._id) {
     return done(new Error('User object missing _id property'), null);
   }
-  done(null, user._id);
+  // Convert ObjectId to string for session storage
+  const userId = user._id.toString();
+  console.log('✅ Serializing user ID:', userId);
+  done(null, userId);
 });
 
 // Deserialize user from session

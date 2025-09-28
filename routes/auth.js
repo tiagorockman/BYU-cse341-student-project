@@ -114,7 +114,18 @@ router.get('/google/callback',
   }),
   (req, res) => {
     // Successful authentication
-    res.redirect('/auth/dashboard');
+    console.log('🎯 OAuth callback - User authenticated:', req.user ? 'Yes' : 'No');
+    console.log('🎯 OAuth callback - Session ID:', req.sessionID);
+    
+    // Explicitly save the session before redirect
+    req.session.save((err) => {
+      if (err) {
+        console.error('❌ Session save error:', err);
+        return res.redirect('/auth/login/failed');
+      }
+      console.log('✅ Session saved successfully');
+      res.redirect('/auth/dashboard');
+    });
   }
 );
 

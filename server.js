@@ -32,20 +32,32 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Session configuration
+const sessionStore = MongoStore.create({
+  mongoUrl: process.env.MONGODB_URI,
+  dbName: process.env.MONGO_DB,
+  collectionName: 'sessions',
+  ttl: 24 * 60 * 60 // 24 hours
+});
+
+// Add session store event listeners for debugging
+sessionStore.on('connected', () => {
+  console.log('✅ Session store connected to MongoDB');
+});
+
+sessionStore.on('error', (error) => {
+  console.error('❌ Session store error:', error);
+});
+
 app.use(session({
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-in-production',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI,
-    dbName: process.env.MONGO_DB,
-    collectionName: 'sessions',
-    ttl: 24 * 60 * 60 // 24 hours
-  }),
+  store: sessionStore,
   cookie: {
     secure: process.env.NODE_ENV === 'production',
     httpOnly: true,
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
   }
 }));
 
